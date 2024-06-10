@@ -3,23 +3,20 @@ import { Stack } from 'expo-router';
 const RootLayout = () => {
     return <Stack>
         <Stack.Screen 
-            name="index"
+            name="(getStarted)"
             options={{
-                headerTitle: 'Banp!',
+                headerTitle: 'AppLayout',
+                headerShown: false, // Header Apenas da Pagina principal
             }}
-        />
+        />  
+
         <Stack.Screen 
-            name="test/(tabs)/routing"
+            name="banp"
             options={{
-                headerTitle: 'Home',
+                headerTitle: 'Banp',
+                headerShown: false, // Header Apenas da Pagina principal
             }}
-        />
-        <Stack.Screen 
-            name="test/(tabs)/users/[id]"
-            options={{
-                headerTitle: 'User',
-            }}
-        />            
+        />             
     </Stack>;
 };
 
