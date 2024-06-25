@@ -4,20 +4,9 @@ import { Stack } from 'expo-router';
 const RootLayout = () => {
   return (
     <AuthProvider>
-      <Stack>
-        <Stack.Screen
-          name="(getStarted)"
-          options={{
-            headerShown: false
-          }}
-        />
-
-        <Stack.Screen
-          name="(banp)"
-          options={{
-            headerShown: false
-          }}
-        />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(getStarted)" />
+        <Stack.Screen name="(banp)" />
       </Stack>
     </AuthProvider>
   );

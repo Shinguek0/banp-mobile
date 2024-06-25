@@ -35,7 +35,7 @@ const SignUp = () => {
       setLoading(true);
       const response = await handleSignUpWithEmail({ email, password });
 
-      if (response?.user) router.push('/signIn');
+      if (response?.user) router.push('/(setup)');
     } catch (error) {
       console.error(error);
     } finally {
@@ -200,6 +200,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: 4,
     gap: 8
   },
   googleButtonText: {

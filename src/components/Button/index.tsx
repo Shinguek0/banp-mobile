@@ -4,11 +4,11 @@ import { Back } from './Back';
 
 type ButtonProps = {
   type?: 'primary' | 'error' | 'custom';
-  circle?: boolean;
+  shape?: 'rounded' | 'circle' | 'default';
 } & TouchableOpacity['props'];
 
-export const Button = ({ children, type = 'primary', circle = false, ...rest }: ButtonProps) => {
-  const style = type === 'custom' ? [styles.button, rest.style] : [styles.button, styles[type]];
+export const Button = ({ children, type = 'primary', shape = 'default', ...rest }: ButtonProps) => {
+  const style = type === 'custom' ? [styles.button, rest.style] : [styles.button, styles[type], styles[shape]];
 
   return (
     <TouchableOpacity
@@ -24,13 +24,18 @@ const styles = StyleSheet.create({
   button: {
     paddingHorizontal: 24,
     paddingVertical: 16,
-    borderRadius: 4,
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center'
   },
-  rounded: {
+  default: {
+    borderRadius: 4
+  },
+  circle: {
     borderRadius: 100
+  },
+  rounded: {
+    borderRadius: 64
   },
   primary: {
     backgroundColor: theme.colors.primary[300]

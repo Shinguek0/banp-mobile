@@ -1,4 +1,4 @@
-import { Tabs } from 'expo-router';
+import { Stack } from 'expo-router';
 
 const RootLayout = () => {
   // const { isAuthenticated } = useAuth();
@@ -8,12 +8,9 @@ const RootLayout = () => {
   // }
 
   return (
-    <Tabs screenOptions={{ headerShown: false }}>
-      <Tabs.Screen
-        name="setup"
-        options={{ href: null }}
-      />
-    </Tabs>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="index" />
+    </Stack>
   );
 };
 
