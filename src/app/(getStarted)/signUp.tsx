@@ -6,9 +6,11 @@ import { useAuth } from '@/hooks/useAuth';
 
 import Logo from '@/assets/logo.svg';
 import { Button, Input } from '@/components';
-import { theme } from '@/styles/theme';
 import { AntDesign } from '@expo/vector-icons';
+import Spinner from 'react-native-loading-spinner-overlay';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { theme } from '@/styles/theme';
 
 const SignUp = () => {
   const [loading, setLoading] = useState(false);
@@ -23,7 +25,7 @@ const SignUp = () => {
   const passwordRef = useRef<TextInput>(null);
   const confirmPasswordRef = useRef<TextInput>(null);
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     if (password !== confirmPassword) {
       // Show error message
       return Alert.alert('Passwords do not match', 'Please make sure your passwords match.');
@@ -31,22 +33,22 @@ const SignUp = () => {
 
     try {
       setLoading(true);
-      handleSignUpWithEmail({ email, password });
-      router.push('/signIn');
+      const response = await handleSignUpWithEmail({ email, password });
+
+      if (response?.user) router.push('/signIn');
     } catch (error) {
       console.error(error);
-      Alert.alert('Error', 'An error occurred while creating your account. Please try again later.');
     } finally {
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
-
       setLoading(false);
     }
   };
 
   return (
     <SafeAreaView style={styles.container}>
+      <Spinner
+        visible={loading}
+        color={theme.colors.primary[300]}
+      />
       <View
         style={[
           styles.backButton,
@@ -103,11 +105,7 @@ const SignUp = () => {
             style={{ marginBottom: 24 }}
             ref={confirmPasswordRef}
           />
-          <Button
-            onPress={handleSignUp} // Add sign up logic
-          >
-            Sign up
-          </Button>
+          <Button onPress={handleSignUp}>Sign up</Button>
         </View>
         <View style={styles.divider}>
           <View style={styles.dividerLine} />
@@ -118,14 +116,15 @@ const SignUp = () => {
           <Button
             type="custom"
             style={styles.googleButton}
-            onPress={() => {}} // Add Google sign up logic
+            disabled // until fix google auth
+            // onPress={handleSignWithGoogle}
           >
             <AntDesign
               name="google"
               size={24}
-              color={theme.colors.neutral[100]}
+              color={theme.colors.neutral[200]}
             />
-            <Text style={styles.googleButtonText}>Sign up with Google</Text>
+            <Text style={styles.googleButtonText}>Sign up with Google (coming soon)</Text>
           </Button>
         </View>
       </View>
@@ -197,14 +196,14 @@ const styles = StyleSheet.create({
     color: theme.colors.neutral[400]
   },
   googleButton: {
-    backgroundColor: '#EA4335',
+    backgroundColor: theme.colors.neutral[400],
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 8
   },
   googleButtonText: {
-    color: theme.colors.neutral[100],
+    color: theme.colors.neutral[200],
     fontWeight: 'bold'
   },
   signIn: {

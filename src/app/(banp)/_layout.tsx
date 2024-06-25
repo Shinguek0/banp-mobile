@@ -3,9 +3,9 @@ import { Redirect, Tabs } from 'expo-router';
 import { useAuth } from '@/hooks/useAuth';
 
 const RootLayout = () => {
-  const { user } = useAuth();
+  const { isAuthenticated } = useAuth();
 
-  if (!user) {
+  if (!isAuthenticated) {
     return <Redirect href="/signIn" />;
   }
 

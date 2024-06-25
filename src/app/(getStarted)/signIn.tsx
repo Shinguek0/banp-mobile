@@ -1,22 +1,47 @@
-import { Button } from '@/components/Button';
-import { theme } from '@/styles/theme';
 import { Link, router } from 'expo-router';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { StyleSheet, Text, View, type TextInput } from 'react-native';
 
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useAuth } from '@/hooks/useAuth';
 
 import Logo from '@/assets/logo.svg';
-import { Input } from '@/components/Input';
+import { Button, Input } from '@/components';
 import { AntDesign } from '@expo/vector-icons';
+import Spinner from 'react-native-loading-spinner-overlay';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+
+import { theme } from '@/styles/theme';
 
 const SignIn = () => {
+  const [loading, setLoading] = useState(false);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const { handleSignInWithEmail } = useAuth();
   const insets = useSafeAreaInsets();
 
   const passwordRef = useRef<TextInput>(null);
 
+  const handleSignIn = async () => {
+    try {
+      setLoading(true);
+      const response = await handleSignInWithEmail({ email, password });
+
+      if (response?.user) router.push('/home');
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
+      <Spinner
+        visible={loading}
+        color={theme.colors.primary[300]}
+      />
       <View
         style={[
           styles.backButton,
@@ -45,6 +70,8 @@ const SignIn = () => {
             returnKeyType="next"
             onSubmitEditing={() => passwordRef.current?.focus()}
             blurOnSubmit={false}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
           />
           <Input.Text
             placeholder="Password"
@@ -52,13 +79,11 @@ const SignIn = () => {
             secureTextEntry={true}
             autoCorrect={false}
             returnKeyType="done"
+            value={password}
+            onChangeText={(text) => setPassword(text)}
             ref={passwordRef}
           />
-          <Button
-            onPress={() => {}} // Add sign in logic
-          >
-            Sign in
-          </Button>
+          <Button onPress={handleSignIn}>Sign in</Button>
         </View>
         <View style={styles.divider}>
           <View style={styles.dividerLine} />
@@ -69,14 +94,15 @@ const SignIn = () => {
           <Button
             type="custom"
             style={styles.googleButton}
-            onPress={() => {}} // Add Google sign in logic
+            disabled // until fix google auth
+            // onPress={handleSignWithGoogle}
           >
             <AntDesign
               name="google"
               size={24}
-              color={theme.colors.neutral[100]}
+              color={theme.colors.neutral[200]}
             />
-            <Text style={styles.googleButtonText}>Sign in with Google</Text>
+            <Text style={styles.googleButtonText}>Sign in with Google (coming soon)</Text>
           </Button>
         </View>
       </View>
@@ -146,14 +172,14 @@ const styles = StyleSheet.create({
     color: theme.colors.neutral[400]
   },
   googleButton: {
-    backgroundColor: '#EA4335',
+    backgroundColor: theme.colors.neutral[400],
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 8
   },
   googleButtonText: {
-    color: theme.colors.neutral[100],
+    color: theme.colors.neutral[200],
     fontWeight: 'bold'
   },
   signUp: {

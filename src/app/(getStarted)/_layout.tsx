@@ -1,6 +1,13 @@
-import { Stack } from 'expo-router';
+import { useAuth } from '@/hooks/useAuth';
+import { Redirect, Stack } from 'expo-router';
 
 const RootLayout = () => {
+  const { isAuthenticated } = useAuth();
+
+  if (isAuthenticated) {
+    return <Redirect href="/home" />;
+  }
+
   return (
     <Stack>
       <Stack.Screen

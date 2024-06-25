@@ -33,6 +33,15 @@
           "fonts": ["node_modules/@expo-google-fonts/viga/Viga_400Regular.ttf"]
         }
       ]
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "3b545c15-e4ff-439b-93e3-68e00a674ed8"
+      }
+    },
+    "owner": "yurilopesm"
   }
 }
