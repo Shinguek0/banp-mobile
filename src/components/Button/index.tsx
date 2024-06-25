@@ -1,21 +1,26 @@
 import { theme } from '@/styles/theme';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Back } from './Back';
+import { PhotoUploader } from './PhotoUploader';
 
 type ButtonProps = {
   type?: 'primary' | 'error' | 'custom';
   shape?: 'rounded' | 'circle' | 'default';
 } & TouchableOpacity['props'];
 
-export const Button = ({ children, type = 'primary', shape = 'default', ...rest }: ButtonProps) => {
-  const style = type === 'custom' ? [styles.button, rest.style] : [styles.button, styles[type], styles[shape]];
+export const Button = ({ children, type = 'primary', shape = 'default', disabled, ...rest }: ButtonProps) => {
+  const style =
+    type === 'custom'
+      ? [styles.button, rest.style]
+      : [styles.button, styles[type], styles[shape], disabled && styles.disabled, rest.style];
 
   return (
     <TouchableOpacity
       {...rest}
       style={style}
+      disabled={disabled}
     >
-      {type === 'custom' ? children : <Text style={styles.text}>{children}</Text>}
+      {type === 'custom' ? children : <Text style={[styles.text, disabled && styles.disabledText]}>{children}</Text>}
     </TouchableOpacity>
   );
 };
@@ -50,7 +55,14 @@ const styles = StyleSheet.create({
     color: theme.colors.neutral[100],
     fontWeight: 'bold',
     fontSize: 14
+  },
+  disabled: {
+    backgroundColor: theme.colors.neutral[400]
+  },
+  disabledText: {
+    color: theme.colors.neutral[300]
   }
 });
 
 Button.Back = Back;
+Button.PhotoUploader = PhotoUploader;

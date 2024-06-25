@@ -32,6 +32,12 @@
         {
           "fonts": ["node_modules/@expo-google-fonts/viga/Viga_400Regular.ttf"]
         }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow $(PRODUCT_NAME) to access your photo"
+        }
       ]
     ],
     "extra": {

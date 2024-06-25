@@ -28,7 +28,9 @@ const SignIn = () => {
       setLoading(true);
       const response = await handleSignInWithEmail({ email, password });
 
-      if (response?.user) router.push('/home');
+      if (response?.have_account) return router.push('/(banp)/home');
+
+      if (response?.have_account === false) return router.push('/(setup)/index');
     } catch (error) {
       console.error(error);
     } finally {

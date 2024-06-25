@@ -5,6 +5,7 @@ import { Button } from '@/components';
 
 import SetupImg from '@/assets/SetupImg.svg';
 import { theme } from '@/styles/theme';
+import { router } from 'expo-router';
 
 const Setup = () => {
   return (
@@ -21,6 +22,7 @@ const Setup = () => {
         <Button
           shape="rounded"
           type="primary"
+          onPress={() => router.push('/profile')}
         >
           Ok. Let’s start!
         </Button>

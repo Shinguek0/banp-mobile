@@ -1,13 +1,14 @@
 import { theme } from '@/styles/theme';
 import { Feather } from '@expo/vector-icons';
-import { forwardRef } from 'react';
+import { ReactNode, forwardRef } from 'react';
 import { TextInput as NativeTextInput, StyleSheet, View } from 'react-native';
 
 type TextInputProps = {
   icon?: string;
+  customIcon?: ReactNode;
 } & NativeTextInput['props'];
 
-export const TextInput = forwardRef<NativeTextInput, TextInputProps>(({ icon, children, ...rest }, ref) => {
+export const TextInput = forwardRef<NativeTextInput, TextInputProps>(({ icon, customIcon, children, ...rest }, ref) => {
   return (
     <View style={[styles.container, rest.style]}>
       <NativeTextInput
@@ -18,7 +19,7 @@ export const TextInput = forwardRef<NativeTextInput, TextInputProps>(({ icon, ch
       >
         {children}
       </NativeTextInput>
-      {icon && (
+      {icon && !customIcon && (
         <Feather
           name={icon as any}
           size={20}
@@ -26,19 +27,20 @@ export const TextInput = forwardRef<NativeTextInput, TextInputProps>(({ icon, ch
           style={styles.icon}
         />
       )}
+      {customIcon}
     </View>
   );
 });
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
     height: 56,
     flexDirection: 'row',
     alignItems: 'center',
     borderRadius: 4,
-    paddingVertical: 16,
-    paddingHorizontal: 24,
+    padding: 16,
+    paddingLeft: 24,
+    paddingRight: 16,
     backgroundColor: theme.colors.neutral[500]
   },
   icon: {

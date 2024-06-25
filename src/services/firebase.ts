@@ -1,6 +1,13 @@
 import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 import { getApp, initializeApp } from 'firebase/app';
 import { getAuth, getReactNativePersistence, initializeAuth } from 'firebase/auth';
+import { FullMetadata, getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
+
+type FirebaseUpload = {
+  uri: string;
+  name?: string;
+  onProgress?: Function;
+};
 
 const firebaseConfig = {
   apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
@@ -12,6 +19,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const storage = getStorage();
 
 const auth = initializeAuth(app, {
   persistence: getReactNativePersistence(ReactNativeAsyncStorage)
@@ -19,4 +27,39 @@ const auth = initializeAuth(app, {
 
 auth.useDeviceLanguage();
 
-export { app, auth, getApp, getAuth };
+const uploadToFirebase = async ({
+  uri,
+  name,
+  onProgress
+}: FirebaseUpload): Promise<{ downloadUrl: string; metadata: FullMetadata }> => {
+  const fetchResponse = await fetch(uri);
+  const theBlob = await fetchResponse.blob();
+
+  const imageRef = ref(getStorage(), `photos/${name}`);
+
+  const uploadTask = uploadBytesResumable(imageRef, theBlob);
+
+  return new Promise((resolve, reject) => {
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        onProgress && onProgress(progress);
+      },
+      (error) => {
+        // Handle unsuccessful uploads
+        console.log(error);
+        reject(error);
+      },
+      async () => {
+        const downloadUrl = await getDownloadURL(uploadTask.snapshot.ref);
+        resolve({
+          downloadUrl,
+          metadata: uploadTask.snapshot.metadata
+        });
+      }
+    );
+  });
+};
+
+export { app, auth, getApp, getAuth, storage, uploadToFirebase };

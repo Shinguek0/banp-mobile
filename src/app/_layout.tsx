@@ -6,6 +6,7 @@ const RootLayout = () => {
     <AuthProvider>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(getStarted)" />
+        <Stack.Screen name="(setup)" />
         <Stack.Screen name="(banp)" />
       </Stack>
     </AuthProvider>

@@ -26,7 +26,7 @@ const SignUp = () => {
   const confirmPasswordRef = useRef<TextInput>(null);
 
   const handleSignUp = async () => {
-    if (password !== confirmPassword) {
+    if (password !== confirmPassword || !confirmPassword) {
       // Show error message
       return Alert.alert('Passwords do not match', 'Please make sure your passwords match.');
     }
@@ -35,7 +35,9 @@ const SignUp = () => {
       setLoading(true);
       const response = await handleSignUpWithEmail({ email, password });
 
-      if (response?.user) router.push('/(setup)');
+      if (response?.have_account) return router.push('/(banp)/home');
+
+      if (response?.have_account === false) return router.push('/(setup)/index');
     } catch (error) {
       console.error(error);
     } finally {

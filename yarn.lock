@@ -1947,6 +1947,18 @@
     prompts "^2.4.2"
     semver "^7.5.2"
 
+"@react-native-community/datetimepicker@8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/datetimepicker/-/datetimepicker-8.0.1.tgz#047f27566fb21b5095fa54f558bffd8ab6472b46"
+  integrity sha512-4BO0t3geMNNw9cIIm9p9FNUzwMXexdzD4pAH0AaUAycs3BS71HLrX8jHbrI7nzq/+8O7cLAXn5Gudte+YpTV8Q==
+  dependencies:
+    invariant "^2.2.4"
+
+"@react-native-picker/picker@2.7.5":
+  version "2.7.5"
+  resolved "https://registry.yarnpkg.com/@react-native-picker/picker/-/picker-2.7.5.tgz#e43fcd65f260fa4f23e974ccb9fb7c1f7a9ff94a"
+  integrity sha512-vhMaOLkXSUb+YKVbukMJToU4g+89VMhBG2U9+cLYF8X8HtFRidrHjohGqT8/OyesDuKIXeLIP+UFYI9Q9CRA9Q==
+
 "@react-native/assets-registry@0.74.83":
   version "0.74.83"
   resolved "https://registry.yarnpkg.com/@react-native/assets-registry/-/assets-registry-0.74.83.tgz#c1815dc10f9e1075e0d03b4c8a9619145969522e"
@@ -2477,6 +2489,11 @@
   resolved "https://registry.yarnpkg.com/@types/cookie/-/cookie-0.6.0.tgz#eac397f28bf1d6ae0ae081363eca2f425bedf0d5"
   integrity sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==
 
+"@types/country-list@^2.1.4":
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/@types/country-list/-/country-list-2.1.4.tgz#703558392ce6fd8a3a1cd30084cebc11ace247aa"
+  integrity sha512-c4orjm0wT+BRt6Ynf2/QRRL+iMX4SdLT11jAjKqkJ7mQr/DLOmdz7qR8i04j9Y7wFSoP70cXJc18FN4YGNgGaA==
+
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.6.tgz#7739c232a1fee9b4d3ce8985f314c0c6d33549d7"
@@ -2827,6 +2844,15 @@ available-typed-arrays@^1.0.7:
   integrity sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==
   dependencies:
     possible-typed-array-names "^1.0.0"
+
+axios@^1.7.2:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.2.tgz#b625db8a7051fbea61c35a3cbb3a1daa7b9c7621"
+  integrity sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
 
 babel-core@^7.0.0-bridge.0:
   version "7.0.0-bridge.0"
@@ -3381,6 +3407,11 @@ cosmiconfig@^8.1.3:
     js-yaml "^4.1.0"
     parse-json "^5.2.0"
     path-type "^4.0.0"
+
+country-list@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/country-list/-/country-list-2.3.0.tgz#1e7ceaf9834c1d1210054301eabf4dc445ab978c"
+  integrity sha512-qZk66RlmQm7fQjMYWku1AyjlKPogjPEorAZJG88owPExoPV8EsyCcuFLvO2afTXHEhi9liVOoyd+5A6ZS5QwaA==
 
 cross-fetch@^3.1.5:
   version "3.1.8"
@@ -4007,6 +4038,18 @@ expo-font@~12.0.7:
   dependencies:
     fontfaceobserver "^2.1.0"
 
+expo-image-loader@~4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/expo-image-loader/-/expo-image-loader-4.7.0.tgz#d403106822de80bda12d644c82b7a3b7983c0f0b"
+  integrity sha512-cx+MxxsAMGl9AiWnQUzrkJMJH4eNOGlu7XkLGnAXSJrRoIiciGaKqzeaD326IyCTV+Z1fXvIliSgNW+DscvD8g==
+
+expo-image-picker@~15.0.5:
+  version "15.0.5"
+  resolved "https://registry.yarnpkg.com/expo-image-picker/-/expo-image-picker-15.0.5.tgz#8a3d4c3ecdb5bcf58f09e024597dd69edf7baa9c"
+  integrity sha512-Qqp16udsadx/YpNcNaWzfbmO0tbMxyX9bS1aFiDVC+Zffh8LY8S4HJJcnWqSC2TeuAl+9SxUwTloJagvPeMBBw==
+  dependencies:
+    expo-image-loader "~4.7.0"
+
 expo-keep-awake@~13.0.2:
   version "13.0.2"
   resolved "https://registry.yarnpkg.com/expo-keep-awake/-/expo-keep-awake-13.0.2.tgz#5ef31311a339671eec9921b934fdd90ab9652b0e"
@@ -4287,6 +4330,11 @@ flow-parser@0.*:
   resolved "https://registry.yarnpkg.com/flow-parser/-/flow-parser-0.238.0.tgz#b465753c2630a38f459413a745c69ec11a0b5291"
   integrity sha512-VE7XSv1epljsIN2YeBnxCmGJihpNIAnLLu/pPOdA+Gkso7qDltJwUi6vfHjgxdBbjSdAuPGnhuOHJUQG+yYwIg==
 
+follow-redirects@^1.15.6:
+  version "1.15.6"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.6.tgz#7f815c0cda4249c74ff09e95ef97c23b5fd0399b"
+  integrity sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==
+
 fontfaceobserver@^2.1.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/fontfaceobserver/-/fontfaceobserver-2.3.0.tgz#5fb392116e75d5024b7ec8e4f2ce92106d1488c8"
@@ -4311,6 +4359,15 @@ form-data@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/form-data/-/form-data-3.0.1.tgz#ebd53791b78356a99af9a300d4282c4d5eb9755f"
   integrity sha512-RHkBKtLWUVwd7SqRIvCZMEvAMoGUp0XU+seQiZejj0COz3RI3hWP4sCv3gZWWLjJTd7rGwcsF5eKZGii0r/hbg==
+  dependencies:
+    asynckit "^0.4.0"
+    combined-stream "^1.0.8"
+    mime-types "^2.1.12"
+
+form-data@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.0.tgz#93919daeaf361ee529584b9b31664dc12c9fa452"
+  integrity sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==
   dependencies:
     asynckit "^0.4.0"
     combined-stream "^1.0.8"
@@ -5386,6 +5443,16 @@ lodash.debounce@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
+
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==
+
+lodash.isobject@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/lodash.isobject/-/lodash.isobject-3.0.2.tgz#3c8fb8d5b5bf4bf90ae06e14f2a530a4ed935e1d"
+  integrity sha512-3/Qptq2vr7WeJbB4KHUSKlq8Pl7ASXi3UG6CMbBm8WRtXi8+GHm7mKaU3urfpSEzWe2wCIChs6/sdocUsTKJiA==
 
 lodash.throttle@^4.1.1:
   version "4.1.1"
@@ -6467,6 +6534,11 @@ protobufjs@^7.2.5:
     "@types/node" ">=13.7.0"
     long "^5.0.0"
 
+proxy-from-env@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/proxy-from-env/-/proxy-from-env-1.1.0.tgz#e102f16ca355424865755d2c9e8ea4f24d58c3e2"
+  integrity sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==
+
 pump@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/pump/-/pump-3.0.0.tgz#b4a2116815bde2f4e1ea602354e8c75565107a64"
@@ -6581,6 +6653,14 @@ react-native-loading-spinner-overlay@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/react-native-loading-spinner-overlay/-/react-native-loading-spinner-overlay-3.0.1.tgz#092481b8cce157d3af5ef942f845ad981f96bd36"
   integrity sha512-4GdR54HQnKg2HPSSisVizfTLuyhSh4splY9eb8mKiYF1Ihjn/5EmdNo5bN3S7uKPFRC3WLzIZIouX6G6fXfnjw==
+
+react-native-picker-select@^9.1.3:
+  version "9.1.3"
+  resolved "https://registry.yarnpkg.com/react-native-picker-select/-/react-native-picker-select-9.1.3.tgz#eaa052c483a7935def8fb28e5ffdf1537b37ded2"
+  integrity sha512-O2EmlY4Mg5fZWxECTQJBDhO61as6RDbPYYiNoryaa0gmIkWxhANLsZI+ElEVru1h0Fp9UlCFtBDI5MwhHR9AxA==
+  dependencies:
+    lodash.isequal "^4.5.0"
+    lodash.isobject "^3.0.2"
 
 react-native-safe-area-context@4.10.1:
   version "4.10.1"
