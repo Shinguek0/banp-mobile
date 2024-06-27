@@ -7,6 +7,14 @@
 - **Firebase**: Autenticação e armazenamento de imagens.
 - **Axios**: Requisições HTTP.
 
+## Integrantes
+
+- Danilo Formanski
+- Vinicius Albino
+- Vitor Loch
+- Vitor Minatto 
+- Yuri Lopes
+
 ## Documentações
 
 Apresentações estão dentro da pasta [docs](/docs)
