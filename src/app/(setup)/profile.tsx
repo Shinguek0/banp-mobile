@@ -127,18 +127,6 @@ const Profile = () => {
     }
   };
 
-  const handleChangeCountry = (code: string) => {
-    setCountry(code);
-  };
-
-  const handleChangeGender = (gender: string) => {
-    setGender(gender);
-  };
-
-  const handleOpenDatePicker = () => {
-    setDatePickerOpen(true);
-  };
-
   const handleChangeDate = (event: DateTimePickerEvent, selectedDate?: Date) => {
     if (event.type === 'set' && selectedDate) setBirthDate(selectedDate);
 
@@ -252,6 +240,7 @@ const Profile = () => {
               selectedStepId={selectedStepId}
             />
           </View>
+
           {selectedStepId === 'profile' && (
             <View style={styles.tab}>
               <View style={styles.header}>
@@ -286,7 +275,7 @@ const Profile = () => {
                 <View style={styles.formRow}>
                   <TouchableOpacity
                     style={styles.datePickerButton}
-                    onPress={handleOpenDatePicker}
+                    onPress={() => setDatePickerOpen(true)}
                   >
                     <Text style={[styles.datePickerButtonText, birthDate ? styles.birthText : {}]}>
                       {birthDate
@@ -305,7 +294,7 @@ const Profile = () => {
                       label: 'Gender',
                       value: null
                     }}
-                    onValueChange={(value) => handleChangeGender(value)}
+                    onValueChange={(value) => setGender(value)}
                     items={[
                       {
                         label: 'Male',
@@ -347,7 +336,7 @@ const Profile = () => {
                     label: 'Country',
                     value: null
                   }}
-                  onValueChange={(value) => handleChangeCountry(value)}
+                  onValueChange={(value) => setCountry(value)}
                   items={countries.map((country) => {
                     return {
                       label: country.name,

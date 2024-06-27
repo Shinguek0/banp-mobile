@@ -34,10 +34,9 @@ const SignUp = () => {
     try {
       setLoading(true);
       const response = await handleSignUpWithEmail({ email, password });
+      console.log(response);
 
-      if (response?.have_account) return router.push('/(banp)/home');
-
-      if (response?.have_account === false) return router.push('/(setup)/index');
+      return router.push('/(setup)');
     } catch (error) {
       console.error(error);
     } finally {

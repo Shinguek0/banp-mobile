@@ -40,12 +40,12 @@ const GetStarted = () => {
           <View style={styles.mainContent}>
             <Text style={styles.slogan}>Best place to find your duo or team.</Text>
             <Button onPress={() => router.push('/signUp')}>Get Started</Button>
-            <Button
+            {/* <Button
               type="error"
               onPress={() => router.push('/_sitemap')}
             >
               GO TO SITEMAP
-            </Button>
+            </Button> */}
             <Text style={styles.signIn}>
               Already have an account?{' '}
               <Link

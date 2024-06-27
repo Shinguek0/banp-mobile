@@ -9,6 +9,9 @@ import { getAuth } from '@/services/firebase';
 
 import { api } from '@/services/axios';
 import { defaultErrorMessage } from '@/utils/firebaseHelpers';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { FirebaseError } from 'firebase/app';
 
 type ApiUserConfirmation = { have_account: boolean };
@@ -20,7 +23,7 @@ type AuthContextProps = {
   handleSignUpWithEmail: (credentials: EmailCredentials) => Promise<ApiUserConfirmation | undefined>;
   // handleSignWithGoogle: () => void;
   handleCompleteProfile: (profile: Profile) => Promise<void>;
-  handleSignOut: () => void;
+  handleSignOut: () => Promise<void>;
 };
 
 export const AuthContext = createContext<AuthContextProps>({} as AuthContextProps);
@@ -76,6 +79,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
       const { data } = await api.get(`/user/signup/${response.user.uid}`);
 
+      await getToken(response.user.email as string);
+
       return data;
     } catch (error) {
       if (error instanceof FirebaseError) {
@@ -93,7 +98,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const { data } = await api.post('/user/signup', { firebase_id: response.user.uid });
       setUser(response.user);
 
-      Alert.alert('Success', `Welcome ${response.user.displayName}!`);
+      Alert.alert('Success', `Welcome ${response.user.email}!`);
 
       return data;
     } catch (error) {
@@ -110,6 +115,11 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const handleSignOut = async () => {
     try {
       await signOut(auth);
+
+      setUser({} as User);
+      await AsyncStorage.removeItem('@banp:token');
+
+      Alert.alert('Success', 'Logged out successfully!');
     } catch (error) {
       console.error(error);
     }
@@ -128,6 +138,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const isAuthenticated = !!user.uid;
+
+  const getToken = async (email: string) => {
+    const { data } = await api.post('/auth', { email });
+
+    const { access_token } = data;
+
+    try {
+      await AsyncStorage.setItem('@banp:token', access_token);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <AuthContext.Provider
